@@ -2,7 +2,9 @@ import React from 'react';
 
 const style = {
     columns: {
-        padding: 25
+        padding: 25,
+        marginBottom: 45,
+        background: 'white'
     }
 };
 
