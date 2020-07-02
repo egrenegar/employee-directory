@@ -1,12 +1,15 @@
 import React from 'react';
+import Header from './components/Header';
+import Table from './components/Table';
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>App</h1>
+    <div className='App'>
+      <Header />
+      <Table />
     </div>
   );
-}
+};
 
 export default App;
