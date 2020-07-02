@@ -1,5 +1,4 @@
 {
-
   "name": "employee-directory",
   "homepage": "http://egrenegar.github.io/employee-directory",
   "version": "0.1.0",
@@ -8,6 +7,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "bulma": "^0.9.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
