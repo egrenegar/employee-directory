@@ -11,5 +11,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 * As a user, I want to be able to view my entire employee directory at once so that I have quick access to their information.
 
+## Deployed Application
+![](./public/assets/EmployeeDirectory.gif)
+
 ## Author
 [Emily Renegar](https://github.com/egrenegar)
