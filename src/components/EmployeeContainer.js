@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import API from '../utils/API';
 import Header from './Header';
 import Columns from './Columns';
@@ -11,8 +11,8 @@ class EmployeeContainer extends React.Component {
 
     state = {
         results: [],
-        searched: [],
-        name: ''
+        employees: [],
+        sorted: false
     }
 
     componentDidMount() {
@@ -23,52 +23,72 @@ class EmployeeContainer extends React.Component {
         API.search(query)
             .then(res => this.setState({
                 results: res.data.results,
-                searched: res.data.results
+                employees: res.data.results
              }))
             .catch(err => console.log(err));
     }
 
-    sortByName = (e) => {
-        e.preventDefault()
+    sortByName = event => {
+        event.preventDefault()
+        
+         // Why is this function changing this.state.results too??
+        if (this.state.sorted === false) {
+            const sortedByName = this.state.employees.sort(function(a, b) {
+                var textA = a.name.first;
+                var textB = b.name.first;
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            })
+
+            this.setState({
+                employees: sortedByName,
+                sorted: true
+            })
+        } else {
+            this.setState({
+                employees: this.state.results,
+                sorted: false
+            })
+        };
     }
 
     handleSearch = event => {
-        let value = event.target.value;
-        console.log(value);
+        let value = event.target.value.toLowerCase();
         
         const filteredEmployees = this.state.results.filter(employee => {
-            return employee.name.first.includes(value)
+            return employee.name.first.toLowerCase().includes(value) || employee.name.last.toLowerCase().includes(value)
         });
 
         this.setState({
-            searched: filteredEmployees
+            employees: filteredEmployees
         });
     }
 
     render() {
+        // console.log(this.state)
         return (
-            <>
+            <Fragment>
                 <Header />
-                <Columns>
-                    <Column>
-                    <SearchBar
-                        onChange={this.handleSearch}
-                    />
-                        <Table>
-                            {this.state.searched.map(employee => (
-                                <TableRow
-                                    key={employee.id.value}
-                                    firstName={employee.name.first}
-                                    lastName={employee.name.last}
-                                    image={employee.picture.thumbnail}
-                                    email={employee.email}
-                                    sortByName={this.sortByName}
-                                />
-                            ))}
-                        </Table>
-                    </Column>
-                </Columns>
-            </>
+                    <Columns>
+                        <Column>
+                        <SearchBar
+                            onChange={this.handleSearch}
+                        />
+                            <Table
+                                sortByName={this.sortByName}
+                            >
+                                {this.state.employees.map(employee => (
+                                    <TableRow
+                                        key={employee.id.value}
+                                        firstName={employee.name.first}
+                                        lastName={employee.name.last}
+                                        image={employee.picture.thumbnail}
+                                        email={employee.email}
+                                    />
+                                ))}
+                            </Table>
+                        </Column>
+                    </Columns>
+            </Fragment>
         )
     }
 
