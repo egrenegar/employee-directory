@@ -1,0 +1,1 @@
+{"version":3,"sources":["App.css"],"names":[],"mappings":"AAAA,KAEE,YACF,CAEA,kBAJE,wBAOF,CAHA,aAEE,mBACF","file":"main.0fc9ab35.chunk.css","sourcesContent":[".App {\n  background-color: lightblue;\n  height: 100vh;\n}\n\n.main-column {\n  background-color: lightblue;\n  padding-bottom: 3rem;\n}\n"]}
