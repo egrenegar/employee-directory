@@ -1,12 +1,15 @@
 import React, {Fragment} from 'react';
 
+const style = {
+    searchBar: {
+        marginBottom: '2rem'
+    }
+}
+
 function SearchBar(props) {
     return(
         <Fragment>
-        <input className="input" type="text" placeholder="Search" onChange={props.onChange}/>
-        <span className="icon is-left">
-        <i className="fas fa-search" aria-hidden="true"></i>
-        </span>
+        <input className="input" type="text" placeholder="Search by name" onChange={props.onChange} style={style.searchBar}/>
         </Fragment>
     );
 }
