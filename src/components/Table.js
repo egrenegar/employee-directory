@@ -1,7 +1,12 @@
 import React from 'react';
 
+const style = {
+    name: {
+        cursor: 'pointer'
+    }
+}
+
 function Table (props) {
-    console.log(props);
     return(
        
         <table className="table is-fullwidth is-striped is-hoverable">
@@ -9,7 +14,7 @@ function Table (props) {
                 <tr>
                     <th>Photo</th>
                     <th>
-                        <span onClick={() => props.sortByName}>Name</span>
+                        <span className={'name'} onClick={props.sortByName} style={style.name}>Name</span>
                     </th>
                     <th>Email Address</th>
                 </tr>
