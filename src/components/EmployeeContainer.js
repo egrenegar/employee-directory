@@ -22,8 +22,8 @@ class EmployeeContainer extends React.Component {
     searchEmployees = query => {
         API.search(query)
             .then(res => this.setState({
-                results: res.data.results,
-                employees: res.data.results
+                results: [...res.data.results],
+                employees: [...res.data.results]
              }))
             .catch(err => console.log(err));
     }
@@ -31,9 +31,9 @@ class EmployeeContainer extends React.Component {
     sortByName = event => {
         event.preventDefault()
         
-         // Why is this function changing this.state.results too??
         if (this.state.sorted === false) {
-            const sortedByName = this.state.employees.sort(function(a, b) {
+            const sortedByName = [...this.state.employees];
+            sortedByName.sort(function(a, b) {
                 var textA = a.name.first;
                 var textB = b.name.first;
                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
@@ -45,7 +45,7 @@ class EmployeeContainer extends React.Component {
             })
         } else {
             this.setState({
-                employees: this.state.results,
+                employees: [...this.state.results],
                 sorted: false
             })
         };
